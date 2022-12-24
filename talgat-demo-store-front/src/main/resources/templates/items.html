@@ -11,53 +11,32 @@
     <img th:src="@{/images/food.png}" width=300px, height=auto/>
 
     <form method="POST" th:object="${order}">
-        <div class="grid">
-            <div class="ingredient-group" id="wraps">
-                <h3>Выберите продукты:</h3>
-                    <div th:each="item : ${items}">
-                        <input th:field="*{itemIds}" type="checkbox"
-                               th:value="${item.id}"/>
-                        <span th:text="${item.name}">ITEM</span><br/>
-                    </div>
-            </div>
-<!--            <div class="ingredient-group" id="proteins">-->
-<!--                <h3>Pick your protein:</h3>-->
-<!--                    <div th:each="ingredient : ${protein}">-->
-<!--                        <input th:field="*{ingredientIds}" type="checkbox"-->
-<!--                               th:value="${ingredient.id}"/>-->
-<!--                        <span th:text="${ingredient.name}">INGREDIENT</span><br/>-->
+<!--        <div class="grid">-->
+<!--&lt;!&ndash;            <div class="ingredient-group" id="wraps">&ndash;&gt;-->
+<!--                <h3>Выберите продукты:</h3>-->
+<!--                    <div th:each="item : ${items}">-->
+<!--                        <input th:field="*{itemIds}" type="checkbox"-->
+<!--                               th:value="${item.id}"/>-->
+<!--                        <span th:text="${item.name}">ITEM</span><br/>-->
 <!--                    </div>-->
-<!--            </div>-->
-<!--            <div class="ingredient-group" id="cheese">-->
-<!--                <h3>Choose your cheese:</h3>-->
-<!--                    <div th:each="ingredient : ${cheese}">-->
-<!--                        <input th:field="*{ingredientIds}" type="checkbox"-->
-<!--                               th:value="${ingredient.id}"/>-->
-<!--                        <span th:text="${ingredient.name}">INGREDIENT</span><br/>-->
-<!--                    </div>-->
-<!--            </div>-->
-<!--            <div class="ingredient-group" id="veggies">-->
-<!--                <h3>Pick your veggies:</h3>-->
-<!--                    <div th:each="ingredient : ${veggies}">-->
-<!--                        <input th:field="*{ingredientIds}" type="checkbox"-->
-<!--                               th:value="${ingredient.id}"/>-->
-<!--                        <span th:text="${ingredient.name}">INGREDIENT</span><br/>-->
-<!--                    </div>-->
-<!--            </div>-->
-<!--            <div class="ingredient-group" id="sauce">-->
-<!--                <h3>Select your sauce:</h3>-->
-<!--                    <div th:each="ingredient : ${sauce}">-->
-<!--                        <input th:field="*{ingredientIds}" type="checkbox"-->
-<!--                               th:value="${ingredient.id}"/>-->
-<!--                        <span th:text="${ingredient.name}">INGREDIENT</span>-->
-<!--                    </div>-->
-<!--            </div>-->
-        </div>
-
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--        </div>-->
+        <table>
+            <tr>
+                <th></th>
+                <th>Название продукта</th>
+                <th>Цена</th>
+            </tr>
+            <tr th:each="item : ${items}">
+                <td><input th:field="*{itemIds}" type="checkbox" th:value="${item.id}"/></td>
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.price}"></td>
+            </tr>
+        </table>
         <div>
             <h3>Комментарий к заказу:</h3>
 <!--            <input type="text" th:field="*{comment}"><br/>-->
-            <button>Submit Your Taco</button>
+            <button>Добавить товары в корзину</button>
         </div>
     </form>
 </body>

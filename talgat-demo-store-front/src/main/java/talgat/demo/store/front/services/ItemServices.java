@@ -8,7 +8,7 @@ import talgat.demo.store.front.model.Item;
 @Service
 public class ItemServices {
 
-    public Flux<Item> getAll(){
+    public Flux<Item> getAllItems(){
         Flux<Item> ingredients = WebClient.create()
                 .get()
                 .uri(uriBuilder -> uriBuilder
