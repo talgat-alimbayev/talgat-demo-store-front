@@ -10,7 +10,7 @@
     <h1>Welcome to Talgat's store</h1>
     <img th:src="@{/images/food.png}" width=300px, height=auto/>
 
-    <form method="POST" th:object="${order}">
+    <form method="POST" th:action="@{/items}" th:object="${cart}">
 <!--        <div class="grid">-->
 <!--&lt;!&ndash;            <div class="ingredient-group" id="wraps">&ndash;&gt;-->
 <!--                <h3>Выберите продукты:</h3>-->
@@ -28,7 +28,7 @@
                 <th>Цена</th>
             </tr>
             <tr th:each="item : ${items}">
-                <td><input th:field="*{itemIds}" type="checkbox" th:value="${item.id}"/></td>
+                <td><input th:field="*{itemList}" type="checkbox" th:value="${item.id}"/></td>
                 <td th:text="${item.name}"></td>
                 <td th:text="${item.price}"></td>
             </tr>

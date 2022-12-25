@@ -21,6 +21,7 @@ public class TalgatDemoStoreFrontApplication {
 	public ApplicationRunner dataLoader(ItemServices itemServices){
 		return (ApplicationArguments s) ->{
 			itemServices.getAllItems().doOnNext(item -> System.out.println(item)).subscribe();
+//			System.out.println(itemServices.getById("122").block());
 		};
 	}
 

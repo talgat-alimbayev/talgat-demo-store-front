@@ -12,7 +12,6 @@ public class Order {
     private Long id;
     @NotBlank(message = "Не забудьте адрес доставки")
     private String deliveryAddress;
-    @Size(min=1, message = "Для перехода на кассу нужно добавить хотя бы один продукт из списка")
     private Set<Long> itemIds = new HashSet<>();
 //    private String comment;
 //    public void addItem(Item item){

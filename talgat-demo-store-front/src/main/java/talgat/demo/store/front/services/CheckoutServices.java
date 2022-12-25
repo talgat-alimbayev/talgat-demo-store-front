@@ -10,7 +10,7 @@ import talgat.demo.store.front.model.Order;
 @Service
 public class CheckoutServices {
 
-    public Mono<Order> postOrder(Order order){
+    public Mono<Order> saveOrder(Order order){
         Mono<Order> result = WebClient.create()
                 .post()
                 .uri("/localhost:8080/api/orders")

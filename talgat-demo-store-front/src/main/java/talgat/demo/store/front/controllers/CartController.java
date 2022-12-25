@@ -5,10 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
+import talgat.demo.store.front.model.Cart;
 import talgat.demo.store.front.model.Item;
 import talgat.demo.store.front.model.Order;
 import talgat.demo.store.front.services.ItemServices;
@@ -18,13 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@SessionAttributes("order")
+@SessionAttributes({"order", "cart"})
 @Slf4j
-public class ItemController {
+@RequestMapping(path = "/items")
+public class CartController {
 
     private ItemServices itemServices;
 
-    public ItemController(ItemServices itemServices) {
+    public CartController(ItemServices itemServices) {
         this.itemServices = itemServices;
     }
 
@@ -32,27 +31,33 @@ public class ItemController {
     public void addItemsToModel(Model model){
         List<Item> items = new ArrayList<Item>();
         itemServices.getAllItems().doOnNext(item -> items.add(item)).blockLast(Duration.ofMillis(100));
-        log.info("Printing items from ItemController");
+        log.info("Printing items from CartController");
 //        itemServices.getAll().doOnNext(item -> System.out.println(item)).subscribe();
         log.info(items.toString());
         model.addAttribute("items", items);
     }
 
     @ModelAttribute(name = "order")
-    public Order addOrderToModel(Model model){
+    public Order addOrderToModel(){
         return new Order();
     }
 
-    @GetMapping(path = "/items")
+    @ModelAttribute(name = "cart")
+    public Cart addCartToModel(){
+        return new Cart();
+    }
+
+    @GetMapping
     public String showItems(){
         return "items";
     }
 
-    @PostMapping(path = "/items")
-    public String processAddedItems(@ModelAttribute @Valid Order order, Errors errors){
-        if (errors.hasErrors()){
-            return "/items";
-        }
+    @PostMapping
+    public String processAddedItems(@ModelAttribute Cart cart){
+//        if (errors.hasErrors()){
+//            return "/items";
+//        }
+        log.info(cart.getItemList().toString());
         return "redirect:/checkout";
     }
 }
