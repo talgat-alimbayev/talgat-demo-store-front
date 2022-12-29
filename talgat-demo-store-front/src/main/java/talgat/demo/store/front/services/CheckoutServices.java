@@ -11,10 +11,10 @@ import talgat.demo.store.front.model.Order;
 public class CheckoutServices {
 
     public Mono<Order> saveOrder(Order order){
-        Mono<Order> result = WebClient.create()
+        Mono<Order> result = WebClient.create("http://localhost:8080")
                 .post()
-                .uri("/localhost:8080/api/orders")
-                .bodyValue(order)
+                .uri("/api/orders")
+                .body(Mono.just(order), Order.class)
                 .retrieve()
                 .bodyToMono(Order.class);
         return result;

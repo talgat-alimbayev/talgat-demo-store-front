@@ -10,11 +10,11 @@ import talgat.demo.store.front.model.Item;
 public class ItemServices {
 
     public Flux<Item> getAllItems(){
-        Flux<Item> items = WebClient.create()
+        Flux<Item> items = WebClient.create("http://localhost:8080")
                 .get()
                 .uri(uriBuilder -> uriBuilder
-                        .path("localhost:8080/api/items")
-                .queryParam("all").build())
+                        .path("/api/items")
+                        .queryParam("all").build())
                 .retrieve()
                 .bodyToFlux(Item.class);
         return items;

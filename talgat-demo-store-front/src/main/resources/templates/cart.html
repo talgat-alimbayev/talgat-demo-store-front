@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<h1>Welcome to Talgat's store</h1>
+<img th:src="@{/images/food.png}" width=300px, height=auto/>
+<h3>Ваша корзина:</h3>
+<form method="POST" th:action="@{/store}" th:object="${cart}">
+    <table>
+        <tr>
+            <th></th>
+            <th>Название продукта</th>
+            <th>Цена</th>
+        </tr>
+        <tr th:each="item : *{itemList}">
+            <td><input th:field="*{itemList}" type="checkbox" th:value="${item.id}"/></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+        </tr>
+    </table>
+    <div>
+        <h3>Комментарий к заказу:</h3>
+        <!--            <input type="text" th:field="*{comment}"><br/>-->
+        <button>Обновить корзину и на кассу</button>
+    </div>
+</form>
+</body>
+</html>

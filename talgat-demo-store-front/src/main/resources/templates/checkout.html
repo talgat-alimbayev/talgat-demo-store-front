@@ -10,29 +10,55 @@
 <body>
     <h1>Welcome to Talgat's store</h1>
     <img th:src="@{/images/food.png}" width=300px, height=auto/>
-<form method="POST" th:action="@{/checkout}" th:object="${order}">
+
 
     <h1>Ваша корзина:</h1>
-    <a th:href="@{/items}" id="another">Добавить ещё продукты в корзину</a><br>
-    <ul>
-        <li th:each="item : ${cart.itemList}">
-            <span th:text="*{item}">item name</span>
-        </li>
-    </ul>
+    <table>
+        <tr>
+            <th>Название продукта</th>
+            <th>Цена</th>
+        </tr>
+        <tr th:each="item : ${cart.itemList}">
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Сумма</td>
+            <td th:text=${cart.total}></td>
+        </tr>
+    </table>
+    <br>
+    <a th:href="@{/store}" id="store">Добавить ещё продукты в корзину</a><br>
+    <a th:href="@{/cart}" id="cart">В корзину</a><br>
+    <form method="POST" th:action="@{/checkout}" th:object="${order}">
     <div th:if="${#fields.hasErrors()}">
         <span class="validationError">
-        Please correct the problems below and resubmit.
+        Что-то пошло не так :(
         </span>
     </div>
 
-    <h3>Deliver my taco masterpiece to...</h3>
-    <label for="deliveryName">Adress: </label>
+    <h3>Кому и куда доставить ваши продукты?</h3>
+    <label for="deliveryAddress">Адрес: </label>
     <input type="text" th:field="*{deliveryAddress}"/>
-<!--    <span class="validationError"-->
-<!--          th:if="${#fields.hasErrors('deliveryName')}"-->
-<!--          th:errors="*{deliveryName}">deliveryName Error</span>-->
-    <br/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('deliveryAddress')}"
+          th:errors="*{deliveryAddress}">deliveryAddress Error</span>
 
+    <br/>
+    <h3>Ваше имя?</h3>
+    <label for="deliveryName">Имя: </label>
+    <input type="text" th:field="*{deliveryName}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('deliveryName')}"
+          th:errors="*{deliveryName}">deliveryName Error</span>
+
+    <br/>
+    <h3>Комментарии к заказу?</h3>
+    <label for="comment">Комментарий: </label>
+    <input type="text" th:field="*{comment}"/>
 <!--    <h3>Deliver my taco masterpiece to...</h3>-->
 <!--    <label for="deliveryName">Name: </label>-->
 <!--    <input type="text" th:field="*{deliveryName}"/>-->
@@ -89,7 +115,7 @@
 <!--          th:if="${#fields.hasErrors('ccCVV')}"-->
 <!--          th:errors="*{ccCVV}">ccCVV Error</span>-->
 <!--    <br/>-->
-
+    <br/>
     <input type="submit" value="Submit order"/>
 </form>
 
