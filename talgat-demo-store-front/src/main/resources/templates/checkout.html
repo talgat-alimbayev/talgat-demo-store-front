@@ -31,8 +31,9 @@
         </tr>
     </table>
     <br>
-    <a th:href="@{/store}" id="store">Добавить ещё продукты в корзину</a><br>
-    <a th:href="@{/cart}" id="cart">В корзину</a><br>
+    <a th:href="@{/store}" id="store">Добавить ещё продукты в корзину</a>
+    <br>
+    <a th:href="@{/cart}" id="cart">Перейти в корзину</a><br>
     <form method="POST" th:action="@{/checkout}" th:object="${order}">
     <div th:if="${#fields.hasErrors()}">
         <span class="validationError">

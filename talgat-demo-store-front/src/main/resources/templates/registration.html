@@ -4,32 +4,51 @@
 <head>
   <meta charset="UTF-8">
   <title>Talgat's demo store</title>
+  <link rel="stylesheet" type="text/css" media="all" href="static/styles.css" th:href="@{static/styles.css}" />
+<!--  <link rel="stylesheet" th:href="@{/styles.css}" />-->
 </head>
 <body>
-<h1>Регистрация</h1>
-<img th:src="@{/images/food.png}" width=300px, height=auto/>
+  <h1>Регистрация</h1>
+  <img th:src="@{/images/food.png}" width=300px, height=auto/>
 
-<form method="POST" th:action="@{/register}" id="registerForm">
+  <form method="POST" th:action="@{/register}" id="registerForm" th:object="${registrationForm}">
 
-  <label for="username">Имя пользователя: </label>
-  <input type="text" name="username" id="username"/><br/>
+    <label for="username">Имя пользователя: </label>
+    <input type="text" name="username" id="username"/><br/>
+    <span style="color:red"
+          th:if="${#fields.hasErrors('username')}"
+          th:errors="*{username}">username Error</span>
+    <br/>
 
-  <label for="password">Пароль: </label>
-  <input type="password" name="password" id="password"/><br/>
+    <label for="password">Пароль: </label>
+    <input type="password" name="password" id="password"/><br/>
+    <span style="color:red"
+          th:if="${#fields.hasErrors('password')}"
+          th:errors="*{password}">password Error</span>
+    <br/>
 
-  <label for="confirm">Повторите пароль: </label>
-  <input type="password" name="confirm" id="confirm"/><br/>
+    <label for="fullname">Полное имя: </label>
+    <input type="text" name="fullName" id="fullname"/><br/>
+    <span style="color:red"
+          th:if="${#fields.hasErrors('fullName')}"
+          th:errors="*{fullName}">password Error</span>
+    <br/>
 
-  <label for="fullname">Полное имя: </label>
-  <input type="text" name="fullName" id="fullname"/><br/>
+    <label for="address">Адрес: </label>
+    <input type="text" name="address" id="address"/><br/>
+    <span style="color:red"
+          th:if="${#fields.hasErrors('address')}"
+          th:errors="*{address}">password Error</span>
+    <br/>
 
-  <label for="address">Адрес: </label>
-  <input type="text" name="address" id="address"/><br/>
+    <label for="email">e-mail: </label>
+    <input type="text" name="email" id="email"/><br/>
+    <span style="color:red"
+          th:if="${#fields.hasErrors('email')}"
+          th:errors="*{email}">password Error</span>
+    <br/>
 
-  <label for="email">e-mail: </label>
-  <input type="text" name="email" id="email"/><br/>
-
-  <input type="submit" value="Зарегистрироваться">
-</form>
+    <input type="submit" value="Зарегистрироваться">
+  </form>
 </body>
 </html>

@@ -40,7 +40,7 @@ public class SecurityConfig {
         return http.authorizeHttpRequests()
                 .requestMatchers("/add-items")
                     .hasRole("ADMIN")
-                .requestMatchers("/login", "/register")
+                .requestMatchers("/login", "/register", "/images/**")
                     .permitAll().
                 requestMatchers("/**")
                     .hasRole("USER")
