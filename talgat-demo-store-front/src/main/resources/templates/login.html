@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Talgat's demo store</title>
+</head>
+<body>
+<h1>Вход в систему</h1>
+    <img th:src="@{/images/food.png}" width=300px, height=auto/>
+
+    <div th:if="${param.error}">Неверное имя пользователя или пароль</div>
+
+<p>Впервые у нас? Нажмите <a th:href="@{/register}">сюда</a>, чтобы зарегистрироваться.</p>
+
+<form method="POST" th:action="@{/authenticate}" id="loginform">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username"/><br/>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password"/><br/>
+    <input type="submit" value="Login"><br/>
+</form>
+
+<!--form<form method="post" th:action="@{/logout}">-->
+<!--    <input type="submit" value="Logout"/>-->
+<!--</form>-->
+
+</body>
+</html>

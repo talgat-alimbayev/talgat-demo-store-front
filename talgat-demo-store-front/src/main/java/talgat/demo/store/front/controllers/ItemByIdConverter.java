@@ -21,7 +21,7 @@ public class ItemByIdConverter implements Converter<String, Item> {
 
     @Override
     public Item convert(String id) {
-        return itemServices.getById(id).block(Duration.ofMillis(100));
+        return itemServices.getItemById(id);
     }
 
 }

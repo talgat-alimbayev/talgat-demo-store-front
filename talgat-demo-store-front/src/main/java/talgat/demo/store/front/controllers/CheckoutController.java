@@ -37,7 +37,7 @@ public class CheckoutController {
         }
         order.setItemIds(cart.getItemIds());
         order.setOrderTotal(cart.getTotal());
-        checkoutServices.saveOrder(order).subscribe();
+        checkoutServices.saveOrder(order);
         log.info("printing order from CheckoutController");
         log.info(order.toString());
         sessionStatus.setComplete();

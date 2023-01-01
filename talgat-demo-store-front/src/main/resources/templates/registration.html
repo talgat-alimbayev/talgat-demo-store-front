@@ -6,7 +6,7 @@
   <title>Talgat's demo store</title>
 </head>
 <body>
-<h1>Register</h1>
+<h1>Регистрация</h1>
 <img th:src="@{/images/food.png}" width=300px, height=auto/>
 
 <form method="POST" th:action="@{/register}" id="registerForm">
@@ -21,7 +21,7 @@
   <input type="password" name="confirm" id="confirm"/><br/>
 
   <label for="fullname">Полное имя: </label>
-  <input type="text" name="fullname" id="fullname"/><br/>
+  <input type="text" name="fullName" id="fullname"/><br/>
 
   <label for="address">Адрес: </label>
   <input type="text" name="address" id="address"/><br/>
@@ -29,7 +29,7 @@
   <label for="email">e-mail: </label>
   <input type="text" name="email" id="email"/><br/>
 
-  <input type="submit" value="submit">
+  <input type="submit" value="Зарегистрироваться">
 </form>
 </body>
 </html>

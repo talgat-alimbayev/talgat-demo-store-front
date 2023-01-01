@@ -30,10 +30,12 @@ public class StoreController {
     @ModelAttribute
     public void addItemsToModel(Model model){
         List<Item> items = new ArrayList<Item>();
-        itemServices.getAllItems().doOnNext(item -> items.add(item)).blockLast(Duration.ofMillis(100));
+        items = itemServices.getAllItems();
+//        itemServices.getAllItems().doOnNext(item -> items.add(item)).blockLast(Duration.ofMillis(100));
         log.info("Printing items from StoreController");
 //        itemServices.getAll().doOnNext(item -> System.out.println(item)).subscribe();
         log.info(items.toString());
+        System.out.println(items.size());
         model.addAttribute("items", items);
     }
 

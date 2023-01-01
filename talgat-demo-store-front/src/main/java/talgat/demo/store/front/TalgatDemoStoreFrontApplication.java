@@ -8,6 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import talgat.demo.store.front.model.Cart;
 import talgat.demo.store.front.model.Order;
+//import talgat.demo.store.front.model.User;
+//import talgat.demo.store.front.repository.UserRepository;
+import talgat.demo.store.front.repository.UserRepository;
 import talgat.demo.store.front.services.CheckoutServices;
 import talgat.demo.store.front.services.ItemServices;
 
@@ -24,18 +27,25 @@ public class TalgatDemoStoreFrontApplication {
 	}
 
 	@Bean
-	public ApplicationRunner dataLoader(ItemServices itemServices, CheckoutServices checkoutServices){
+	public ApplicationRunner dataLoader(ItemServices itemServices,
+										CheckoutServices checkoutServices,
+										UserRepository userRepo){
 		return (ApplicationArguments s) ->{
-			itemServices.getAllItems().doOnNext(item -> System.out.println(item)).subscribe();
+			System.out.println(itemServices.getItemById("301"));
+			System.out.println(userRepo.findByUsername("natalie").block().toString());
+//			itemServices.getAllItems().doOnNext(item -> System.out.println(item)).subscribe();
+//			System.out.println(itemServices.getAllItems().toString());
+//			Order order1 =  new Order();
+//			order1.setDeliveryAddress("54545454");
+//			Set<Long> set1 = new HashSet<>();
+//			set1.add(133L);
+//			set1.add(134L);
+//			order1.setItemIds(set1);
+////			checkoutServices.saveOrder(order1).subscribe();
+//			System.out.println(order1.toString());
 
-			Order order1 =  new Order();
-			order1.setDeliveryAddress("54545454");
-			Set<Long> set1 = new HashSet<>();
-			set1.add(133L);
-			set1.add(134L);
-			order1.setItemIds(set1);
-//			checkoutServices.saveOrder(order1).subscribe();
-			System.out.println(order1.toString());
+//			User user1 = new User("talim", "talim", "talim", "talim", "talim");
+//			userRepo.save(user1).subscribe();
 		};
 	}
 
