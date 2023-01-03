@@ -11,7 +11,6 @@ import talgat.demo.store.front.model.Item;
 import talgat.demo.store.front.model.Order;
 import talgat.demo.store.front.services.ItemServices;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +30,6 @@ public class StoreController {
     public void addItemsToModel(Model model){
         List<Item> items = new ArrayList<Item>();
         items = itemServices.getAllItems();
-//        itemServices.getAllItems().doOnNext(item -> items.add(item)).blockLast(Duration.ofMillis(100));
-//        log.info("Printing items from StoreController");
-//        itemServices.getAll().doOnNext(item -> System.out.println(item)).subscribe();
-//        log.info(items.toString());
-//        System.out.println(items.size());
         model.addAttribute("items", items);
     }
 
@@ -60,9 +54,6 @@ public class StoreController {
             return "store";
         }
         cart.calculateTotal();
-//        log.info("printing all items from StoreController and total");
-//        log.info(cart.getItemList().toString());
-//        log.info(cart.getTotal().toString());
         return "redirect:/checkout";
     }
 }

@@ -46,7 +46,6 @@ public class CheckoutController {
                              @ModelAttribute Cart cart,
                              SessionStatus sessionStatus
                              ){
-//        log.info("printing order from CheckoutController");
         if (errors.hasErrors()){
             return "checkout";
         }
@@ -54,8 +53,6 @@ public class CheckoutController {
         order.setOrderTotal(cart.getTotal());
         checkoutServices.saveOrder(order);
         emailServices.sendOrderEmail(order);
-//        log.info("printing order from CheckoutController");
-//        log.info(order.toString());
         sessionStatus.setComplete();
         return "success";
     }

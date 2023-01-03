@@ -1,8 +1,5 @@
 package talgat.demo.store.front.controllers;
 
-//import org.springframework.security.crypto.password.PasswordEncoder;
-
-//import org.springframework.security.crypto.password.PasswordEncoder;
 import jakarta.validation.Valid;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -41,17 +38,9 @@ public class RegistrationController {
         if (errors.hasErrors()){
             return "registration";
         }
-        System.out.println(form.toString());
-        System.out.println(passwordEncoder.encode(form.getPassword()).toString().length());
         userRepo.save(form.toUser(passwordEncoder)).subscribe();
         sessionStatus.setComplete();
         return "redirect:/login";
     }
 
-//    @PostMapping
-//    public String processForm(RegistrationForm form){
-//        System.out.println(form.toString());
-//        userRepo.save(form.toUser()).subscribe();
-//        return "redirect:/login";
-//    }
 }

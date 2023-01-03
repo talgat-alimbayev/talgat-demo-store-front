@@ -36,9 +36,7 @@ public class AdminController {
         if (errors.hasErrors()){
             return "admin";
         }
-        System.out.println(item.toString());
         itemServices.createItem(item);
-//        userRepo.save(form.toUser(passwordEncoder)).subscribe();
         sessionStatus.setComplete();
         return "redirect:/";
     }
