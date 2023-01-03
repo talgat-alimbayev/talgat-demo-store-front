@@ -19,6 +19,9 @@ public class Order {
     @NotBlank(message = "Кому доставить?")
     private String deliveryName;
 
+    @NotBlank(message = "Имейл обязателен!")
+    private String email;
+
     private Set<Long> itemIds = new HashSet<>();
     private BigDecimal orderTotal;
     private String comment;

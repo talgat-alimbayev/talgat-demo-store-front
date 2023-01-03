@@ -24,10 +24,13 @@
         </tr>
     </table>
     <div>
-        <h3>Комментарий к заказу:</h3>
-        <!--            <input type="text" th:field="*{comment}"><br/>-->
         <button>Обновить корзину и на кассу</button>
     </div>
 </form>
+
+    <form method="post" th:action="@{/logout}">
+        <input type="submit" value="Logout"/>
+    </form>
+
 </body>
 </html>

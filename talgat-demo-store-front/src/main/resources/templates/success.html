@@ -6,9 +6,14 @@
   <title>Talgat's demo store</title>
 </head>
 <body>
-<h1>Welcome to Talgat's store</h1>
-<img th:src="@{/images/food.png}" width=300px, height=auto/><br>
-<h1>Ваш заказ принят в обработку</h1>
-<a th:href="@{/store}" id="another">Создать новый заказ</a><br>
+  <h1>Welcome to Talgat's store</h1>
+  <img th:src="@{/images/food.png}" width=300px, height=auto/>
+  <br>
+  <h1>Ваш заказ принят в обработку</h1>
+  <a th:href="@{/store}" id="another">Создать новый заказ</a>
+  <br>
+  <form method="post" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+  </form>
 </body>
 </html>

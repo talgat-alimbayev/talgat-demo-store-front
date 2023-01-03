@@ -38,7 +38,16 @@ public class ItemServices {
     }
 
     public Item getItemById(String id){
-        return rest.getForObject("http://localhost:8080/api/items?id={id}", Item.class, id);
+//        return rest.getForObject("http://localhost:8080/api/items?id={id}", Item.class, id);
+        ResponseEntity<Item[]> response = rest.getForEntity("http://localhost:8080/api/items?ids={id}", Item[].class, id);
+        Item[] items = response.getBody();
+//        System.out.println(items[0]);
+        return items[0];
+//        Item[] items = response.getBody();
+//
+//        System.out.println(response.getBody());
+//        return response.getBody().stream().;
+////        return new Item();
     }
 
     public List<Item> getAllItems(){

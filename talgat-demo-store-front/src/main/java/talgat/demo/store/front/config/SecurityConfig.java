@@ -50,6 +50,8 @@ public class SecurityConfig {
                     .defaultSuccessUrl("/", true)
                 .loginProcessingUrl("/authenticate")
                 .and()
+                .logout()
+                .and()
                 .csrf().disable()
                 .build();
     }

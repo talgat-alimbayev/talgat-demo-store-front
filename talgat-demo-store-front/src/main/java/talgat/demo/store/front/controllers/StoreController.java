@@ -32,10 +32,10 @@ public class StoreController {
         List<Item> items = new ArrayList<Item>();
         items = itemServices.getAllItems();
 //        itemServices.getAllItems().doOnNext(item -> items.add(item)).blockLast(Duration.ofMillis(100));
-        log.info("Printing items from StoreController");
+//        log.info("Printing items from StoreController");
 //        itemServices.getAll().doOnNext(item -> System.out.println(item)).subscribe();
-        log.info(items.toString());
-        System.out.println(items.size());
+//        log.info(items.toString());
+//        System.out.println(items.size());
         model.addAttribute("items", items);
     }
 
@@ -60,9 +60,9 @@ public class StoreController {
             return "store";
         }
         cart.calculateTotal();
-        log.info("printing all items from StoreController and total");
-        log.info(cart.getItemList().toString());
-        log.info(cart.getTotal().toString());
+//        log.info("printing all items from StoreController and total");
+//        log.info(cart.getItemList().toString());
+//        log.info(cart.getTotal().toString());
         return "redirect:/checkout";
     }
 }
