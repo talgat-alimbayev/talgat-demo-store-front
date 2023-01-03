@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Talgat's demo store</title>
+</head>
+<body>
+    <h1>Привет, админ. Какой продукт добавить?</h1>
+    <form method="POST" th:action="@{/admin}" id="newItem" th:object="${item}">
+        <label for="name">Наименование продукта: </label>
+        <input type="text" name="name" id="name"/><br/>
+        <span style="color:red"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}">name Error</span>
+        <br/>
+
+        <label for="name">Цена продукта: </label>
+        <input type="text" name="price" id="price"/><br/>
+        <span style="color:red"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{price">price Error</span>
+        <br/>
+
+        <input type="submit" value="Сохранить продукт">
+    </form>
+</body>
+</html>

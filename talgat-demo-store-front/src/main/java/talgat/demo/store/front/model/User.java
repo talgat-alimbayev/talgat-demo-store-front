@@ -20,9 +20,10 @@ public class User implements UserDetails {
     private final String fullName;
     private final String address;
     private final String email;
+    private final String role;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        return Arrays.asList(new SimpleGrantedAuthority(this.getRole().trim()));
     }
 
     @Override

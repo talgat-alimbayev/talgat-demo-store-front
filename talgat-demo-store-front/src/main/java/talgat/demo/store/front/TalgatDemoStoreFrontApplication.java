@@ -32,7 +32,7 @@ public class TalgatDemoStoreFrontApplication {
 										UserRepository userRepo){
 		return (ApplicationArguments s) ->{
 			System.out.println(itemServices.getItemById("1"));
-			System.out.println(userRepo.findByUsername("natalie").block().toString());
+//			System.out.println(userRepo.findByUsername("natalie").block().toString());
 //			itemServices.getAllItems().doOnNext(item -> System.out.println(item)).subscribe();
 //			System.out.println(itemServices.getAllItems().toString());
 //			Order order1 =  new Order();

@@ -54,4 +54,8 @@ public class ItemServices {
         List<Item> response = rest.getForObject("http://localhost:8080/api/items?all", List.class);
         return response;
     }
+
+    public Item createItem(Item item){
+        return rest.postForObject("http://localhost:8080/api/items", item, Item.class);
+    }
 }

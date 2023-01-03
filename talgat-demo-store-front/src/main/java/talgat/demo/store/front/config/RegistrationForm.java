@@ -20,6 +20,6 @@ public class RegistrationForm {
       private String email;
       public User toUser(PasswordEncoder passwordEncoder){
             return new User(username, passwordEncoder.encode(password),
-                            fullName, address, email);
+                            fullName, address, email, "ROLE_USER"); // пользователи всегда USER, создать админа невозможно
       }
 }
