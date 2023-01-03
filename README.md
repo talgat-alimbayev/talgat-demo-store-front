@@ -1,1 +1,0 @@
-# talgat-demo-store-front
