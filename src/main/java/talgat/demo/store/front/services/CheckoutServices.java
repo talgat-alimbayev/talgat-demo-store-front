@@ -13,6 +13,6 @@ public class CheckoutServices {
     }
 
     public Order saveOrder(Order order){
-        return rest.postForObject("http://localhost:8080/api/orders", order, Order.class);
+        return rest.postForObject("http://backend:8080/api/orders", order, Order.class);
     }
 }
