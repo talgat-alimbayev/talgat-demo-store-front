@@ -18,7 +18,7 @@ public class ItemServices {
     public Item getItemById(String id){
         ResponseEntity<Item[]> response = rest.getForEntity("http://backend:8080/api/items?ids={id}", Item[].class, id);
         Item[] items = response.getBody();
-        return items[0]; //
+        return items[0]; // ответ приходит в виде списка, нужно вытащить нулевой элемент
     }
 
     public List<Item> getAllItems(){
