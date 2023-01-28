@@ -1,1 +1,0 @@
-INSERT INTO users (username, password, full_name, address, email, role) VALUES ('admin', '$2a$12$KGrDkiKluboF7rB1d0mVduUaR0meCJ3gy9a3WaJ01I.KWrCGGdKZC', 'admin', 'admin', 'alimbayev.talgat@gmail.com', 'ROLE_ADMIN');

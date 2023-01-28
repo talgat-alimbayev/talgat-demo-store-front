@@ -22,8 +22,8 @@
 <!--&lt;!&ndash;            </div>&ndash;&gt;-->
 <!--        </div>-->
         <span class="validationError"
-              th:if="${#fields.hasErrors('itemList')}"
-              th:errors="*{itemList}">Нужно выбрать хотя бы один продукт</span>
+              th:if="${#fields.hasErrors('items')}"
+              th:errors="*{items}">Нужно выбрать хотя бы один продукт</span>
         <br>
         <table>
             <tr>
@@ -32,7 +32,7 @@
                 <th>Цена</th>
             </tr>
             <tr th:each="item : ${items}">
-                <td><input th:field="*{itemList}" type="checkbox" th:value="${item.id}"/></td>
+                <td><input th:field="${cart.items}" type="checkbox" th:value="${item.id}"/></td>
                 <td th:text="${item.name}"></td>
                 <td th:text="${item.price}"></td>
             </tr>

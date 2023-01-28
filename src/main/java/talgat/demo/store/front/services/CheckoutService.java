@@ -5,14 +5,14 @@ import org.springframework.web.client.RestTemplate;
 import talgat.demo.store.front.model.Order;
 
 @Service
-public class CheckoutServices {
+public class CheckoutService {
     private RestTemplate rest;
 
-    public CheckoutServices(RestTemplate rest) {
+    public CheckoutService(RestTemplate rest) {
         this.rest = rest;
     }
 
     public Order saveOrder(Order order){
-        return rest.postForObject("http://backend:8080/api/orders", order, Order.class);
+        return rest.postForObject("http://localhost:8080/api/orders/save", order, Order.class);
     }
 }

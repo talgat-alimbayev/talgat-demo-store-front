@@ -4,9 +4,8 @@ package talgat.demo.store.front.model;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
-import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class Order {
@@ -21,10 +20,10 @@ public class Order {
     @NotBlank(message = "Имейл обязателен!")
     private String email;
 
-    private Set<Long> itemIds = new HashSet<>();
-    private BigDecimal orderTotal;
+    private List<ItemOrder> items = new ArrayList<>();
     private String comment;
-    public void addItem(Item item){
-        itemIds.add(item.getId());
+    private Long userId;
+    public void addItem(ItemOrder item){
+        items.add(item);
     }
 }

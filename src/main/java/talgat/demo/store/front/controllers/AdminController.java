@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
-import talgat.demo.store.front.model.Item;
-import talgat.demo.store.front.services.ItemServices;
+import talgat.demo.store.front.model.ItemStore;
+import talgat.demo.store.front.services.ItemService;
 
 @Controller
 @RequestMapping(path = "/admin")
 public class AdminController {
 
-    private ItemServices itemServices;
+    private ItemService itemService;
 
-    public AdminController(ItemServices itemServices) {
-        this.itemServices = itemServices;
+    public AdminController(ItemService itemService) {
+        this.itemService = itemService;
     }
 
     @ModelAttribute(name = "item")
-    public Item addItemToModel(){
-        return new Item();
+    public ItemStore addItemToModel(){
+        return new ItemStore();
     }
 
     @GetMapping
@@ -32,11 +32,11 @@ public class AdminController {
     }
 
     @PostMapping
-    public String processItem(@Valid Item item, Errors errors, SessionStatus sessionStatus){
+    public String processItem(@Valid ItemStore item, Errors errors, SessionStatus sessionStatus){
         if (errors.hasErrors()){
             return "admin";
         }
-        itemServices.createItem(item);
+        itemService.createItem(item);
         sessionStatus.setComplete();
         return "redirect:/";
     }

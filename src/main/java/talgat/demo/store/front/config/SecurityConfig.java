@@ -10,7 +10,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import talgat.demo.store.front.model.User;
-import talgat.demo.store.front.repository.UserRepository;
+import talgat.demo.store.front.services.UserService;
+
+import java.util.Optional;
 
 @Configuration
 @EnableWebSecurity
@@ -22,10 +24,12 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(UserRepository userRepo){
+    public UserDetailsService userDetailsService(UserService userService){
         return username -> {
-            User user = userRepo.findByUsername(username).block();
-            if (user != null) return user;
+            Optional<User> user = userService.findByUsername(username);
+            if (user.isPresent()) {
+                return user.get();
+            }
             throw new UsernameNotFoundException("User " + username + "not found");
         };
     }

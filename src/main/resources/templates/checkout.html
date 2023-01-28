@@ -17,7 +17,7 @@
             <th>Название продукта</th>
             <th>Цена</th>
         </tr>
-        <tr th:each="item : ${cart.itemList}">
+        <tr th:each="item : ${cart.items}">
             <td th:text="${item.name}"></td>
             <td th:text="${item.price}"></td>
         </tr>

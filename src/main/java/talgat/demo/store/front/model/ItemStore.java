@@ -6,7 +6,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 @Data
-public class Item {
+public class ItemStore {
 
     private Long id;
     @Size(min = 1, message = "Слишком короткое имя")

@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import talgat.demo.store.front.config.RegistrationForm;
-import talgat.demo.store.front.repository.UserRepository;
+import talgat.demo.store.front.services.UserService;
 
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {
-    private UserRepository userRepo;
+    private UserService userService;
     private PasswordEncoder passwordEncoder;
-    public RegistrationController(UserRepository userRepo, PasswordEncoder passwordEncoder){
-        this.userRepo = userRepo;
+    public RegistrationController(UserService userService, PasswordEncoder passwordEncoder){
+        this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -38,7 +38,7 @@ public class RegistrationController {
         if (errors.hasErrors()){
             return "registration";
         }
-        userRepo.save(form.toUser(passwordEncoder)).subscribe();
+        userService.saveUser(form.toUser(passwordEncoder));
         sessionStatus.setComplete();
         return "redirect:/login";
     }

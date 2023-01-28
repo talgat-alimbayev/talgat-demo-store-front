@@ -7,9 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import talgat.demo.store.front.model.Cart;
-import talgat.demo.store.front.model.Item;
+import talgat.demo.store.front.model.ItemStore;
 import talgat.demo.store.front.model.Order;
-import talgat.demo.store.front.services.ItemServices;
+import talgat.demo.store.front.services.ItemService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,16 +20,16 @@ import java.util.List;
 @RequestMapping(path = "/store")
 public class StoreController {
 
-    private ItemServices itemServices;
+    private ItemService itemService;
 
-    public StoreController(ItemServices itemServices) {
-        this.itemServices = itemServices;
+    public StoreController(ItemService itemServices) {
+        this.itemService = itemServices;
     }
 
     @ModelAttribute
     public void addItemsToModel(Model model){
-        List<Item> items = new ArrayList<Item>();
-        items = itemServices.getAllItems();
+        List<ItemStore> items = new ArrayList<>();
+        items = itemService.getAllItems();
         model.addAttribute("items", items);
     }
 

@@ -1,26 +1,34 @@
 package talgat.demo.store.front.model;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Arrays;
 import java.util.Collection;
 
 @Data
-@Table("users")
+@NoArgsConstructor
 public class User implements UserDetails {
-    @Id
+
     private Long id;
-    private final String username;
-    private final String password;
-    private final String fullName;
-    private final String address;
-    private final String email;
-    private final String role;
+    private String username;
+    private String password;
+    private String fullName;
+    private String address;
+    private String email;
+    private String role;
+
+    public User(String username, String password, String fullName, String address, String email, String role) {
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.address = address;
+        this.email = email;
+        this.role = role;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority(this.getRole().trim()));

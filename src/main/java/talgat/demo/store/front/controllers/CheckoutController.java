@@ -8,22 +8,21 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import talgat.demo.store.front.model.Cart;
+import talgat.demo.store.front.model.ItemOrder;
 import talgat.demo.store.front.model.Order;
 import talgat.demo.store.front.model.User;
-import talgat.demo.store.front.services.CheckoutServices;
-import talgat.demo.store.front.services.email.OrderEmailServices;
+import talgat.demo.store.front.services.CheckoutService;
+
+import java.util.stream.Collectors;
 
 @Controller
 @SessionAttributes({"order", "cart"})
 @RequestMapping("/checkout")
 @Slf4j
 public class CheckoutController {
-    private CheckoutServices checkoutServices;
-    private OrderEmailServices emailServices;
-
-    public CheckoutController(CheckoutServices checkoutServices, OrderEmailServices emailService) {
-        this.checkoutServices = checkoutServices;
-        this.emailServices = emailService;
+    private CheckoutService checkoutService;
+    public CheckoutController(CheckoutService checkoutService) {
+        this.checkoutService = checkoutService;
     }
 
     @GetMapping
@@ -40,7 +39,6 @@ public class CheckoutController {
         }
         return "checkout";
     }
-
     @PostMapping
     public String placeOrder(@Valid @ModelAttribute("order") Order order, Errors errors,
                              @ModelAttribute Cart cart,
@@ -49,10 +47,9 @@ public class CheckoutController {
         if (errors.hasErrors()){
             return "checkout";
         }
-        order.setItemIds(cart.getItemIds());
-        order.setOrderTotal(cart.getTotal());
-        checkoutServices.saveOrder(order);
-        emailServices.sendOrderEmail(order);
+        order.setItems(cart.getItems().stream().map(itemStore -> new ItemOrder(itemStore)).collect(Collectors.toList()));
+        order.setUserId(2L);
+        checkoutService.saveOrder(order);
         sessionStatus.setComplete();
         return "success";
     }

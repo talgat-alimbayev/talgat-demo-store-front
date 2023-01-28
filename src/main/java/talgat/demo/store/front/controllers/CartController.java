@@ -19,7 +19,7 @@ public class CartController {
     @PostMapping
     public String updateCart(@ModelAttribute Cart cart){
         cart.calculateTotal();
-        if (cart.getItemList().isEmpty()){
+        if (cart.getItems().isEmpty()){
             return "redirect:/store";
         }
         return "redirect:/checkout";
