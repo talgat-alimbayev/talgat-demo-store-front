@@ -1,6 +1,7 @@
 package talgat.demo.store.front.controllers;
 
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import talgat.demo.store.front.model.ItemStore;
 import talgat.demo.store.front.services.ItemService;
 
 @Controller
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping(path = "/admin")
 public class AdminController {
 

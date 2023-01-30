@@ -16,13 +16,13 @@ public class ItemService {
     }
 
     public ItemStore getItemById(String id){
-        ResponseEntity<ItemStore> response = rest.getForEntity("http://localhost:8080/api/store/items/find-by-id?id={id}", ItemStore.class, id);
+        ResponseEntity<ItemStore> response = rest.getForEntity("/store/items/find-by-id?id={id}", ItemStore.class, id);
         ItemStore item = response.getBody();
         return item;
     }
 
     public List<ItemStore> getAllItems(){
-        List<ItemStore> response = rest.getForObject("http://localhost:8080/api/store/items/find?all", List.class);
+        List<ItemStore> response = rest.getForObject("/store/items/find?all", List.class);
         return response;
     }
 

@@ -41,15 +41,13 @@ public class CheckoutController {
     }
     @PostMapping
     public String placeOrder(@Valid @ModelAttribute("order") Order order, Errors errors,
-                             @ModelAttribute Cart cart,
+                             @ModelAttribute Cart cart, @AuthenticationPrincipal User user,
                              SessionStatus sessionStatus
                              ){
         if (errors.hasErrors()){
             return "checkout";
         }
-        order.setItems(cart.getItems().stream().map(itemStore -> new ItemOrder(itemStore)).collect(Collectors.toList()));
-        order.setUserId(2L);
-        checkoutService.saveOrder(order);
+        checkoutService.saveOrder(order, cart, user);
         sessionStatus.setComplete();
         return "success";
     }

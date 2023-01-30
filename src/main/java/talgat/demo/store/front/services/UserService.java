@@ -17,7 +17,7 @@ public class UserService {
 
     public Optional<User> findByUsername(String username){
         ResponseEntity<User> user = rest.
-                getForEntity("http://localhost:8080/api/users/find-by-username?username={username}",
+                getForEntity("/users/find-by-username?username={username}",
                              User.class, username);
         if (user.getBody() != null){
             return Optional.of(user.getBody());
@@ -26,6 +26,6 @@ public class UserService {
     }
 
     public User saveUser(User user){
-        return rest.postForObject("http://localhost:8080/api/users/new-user", user, User.class);
+        return rest.postForObject("/users/new-user", user, User.class);
     }
 }

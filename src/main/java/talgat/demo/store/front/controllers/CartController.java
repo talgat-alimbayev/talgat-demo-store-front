@@ -7,7 +7,6 @@ import talgat.demo.store.front.model.Cart;
 
 @Controller
 @SessionAttributes({"order", "cart"})
-@Slf4j
 @RequestMapping(path = "/cart")
 public class CartController {
 
