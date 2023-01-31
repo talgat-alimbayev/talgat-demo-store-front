@@ -8,17 +8,13 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import talgat.demo.store.front.model.Cart;
-import talgat.demo.store.front.model.ItemOrder;
 import talgat.demo.store.front.model.Order;
 import talgat.demo.store.front.model.User;
 import talgat.demo.store.front.services.CheckoutService;
 
-import java.util.stream.Collectors;
-
 @Controller
 @SessionAttributes({"order", "cart"})
 @RequestMapping("/checkout")
-@Slf4j
 public class CheckoutController {
     private CheckoutService checkoutService;
     public CheckoutController(CheckoutService checkoutService) {

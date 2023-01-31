@@ -24,9 +24,4 @@ public class Cart {
         items.add(item);
     }
 
-//    public Set<Long> getItemIds(){
-//        return itemList.stream().map(item -> item.getId()).collect(Collectors.toSet());
-//    }
-
-
 }

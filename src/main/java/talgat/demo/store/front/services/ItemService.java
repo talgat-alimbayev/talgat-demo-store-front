@@ -27,6 +27,6 @@ public class ItemService {
     }
 
     public ItemStore createItem(ItemStore item){
-        return rest.postForObject("http://localhost:8080/api/store/items/create", item, ItemStore.class);
+        return rest.postForObject("/store/items/create", item, ItemStore.class);
     }
 }

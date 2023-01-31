@@ -16,7 +16,6 @@ import java.util.List;
 
 @Controller
 @SessionAttributes({"order", "cart"})
-@Slf4j
 @RequestMapping(path = "/store")
 public class StoreController {
 
